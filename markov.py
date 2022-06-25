@@ -1,5 +1,6 @@
 """Generate Markov text from text files."""
 
+from calendar import c
 from random import choice
 
 
@@ -11,8 +12,12 @@ def open_and_read_file(file_path):
     """
 
     # your code goes here
+    file = open(file_path)
+    txt = file.read()
+    file.close()
+    print(txt)
 
-    return 'Contents of your file as one long string'
+    return txt
 
 
 def make_chains(text_string):
@@ -43,7 +48,19 @@ def make_chains(text_string):
     chains = {}
 
     # your code goes here
+    words = text_string.split()
 
+    words.append(None)
+    
+    for i in range(len(words) - 2):
+        key = (words[i], words[i + 1])
+        value = words[i + 2]
+        
+        if key not in chains:
+            chains[key] = []
+        
+        chains[key].append(value)
+    
     return chains
 
 
