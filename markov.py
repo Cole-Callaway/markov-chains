@@ -15,7 +15,7 @@ def open_and_read_file(file_path):
     file = open(file_path)
     txt = file.read()
     file.close()
-    print(txt)
+    # print(txt)
 
     return txt
 
@@ -61,13 +61,19 @@ def make_chains(text_string):
         
         chains[key].append(value)
     
+    # print(chains)
     return chains
-
 
 def make_text(chains):
     """Return text from chains."""
-
-    words = []
+    key = choice(list(chains.keys()))
+    words = [key[0], key[1]]
+    word = choice(chains[key])
+    
+    while word is not None:
+        key = (key[1], word)
+        words.append(word)
+        word = choice(chains[key])
 
     # your code goes here
 
